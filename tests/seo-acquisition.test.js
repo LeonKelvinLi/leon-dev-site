@@ -62,7 +62,7 @@ test('published homepage metadata, services, and inquiry path state the current 
   assert.match(description, /directly with Leon/i);
   assert.match(html, /<link\b[^>]*rel="canonical"[^>]*href="https:\/\/leonbuilds\.org\/?"/i);
   assert.equal((html.match(/<h1\b/gi) || []).length, 1);
-  assert.match(visible, /websites & automation that/i);
+  assert.match(visible, /websites, apps & automation/i);
   assert.match(visible, /small businesses/i);
   assert.ok(html.indexOf('id="services"') < html.indexOf('id="work"'));
   assert.match(html, /href="#start"/i);
