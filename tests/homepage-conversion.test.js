@@ -117,11 +117,11 @@ test('published export has the current metadata and four-section navigation', ()
 test('hero has one primary project action and a secondary work link', () => {
   const hero = elementsWithClass(html, 'section', 'hero-journey')[0] || '';
   const visible = plainText(hero);
-  assert.match(visible, /websites & automation that make your business easier to run/i);
+  assert.match(visible, /websites, apps & automation/i);
   assert.match(visible, /small businesses/i);
   const primary = linksIn(hero).find(link => link.attrs['data-event'] === 'hero_fixed_quote_click');
   assert.equal(primary?.attrs.href, 'https://leonbuilds.org/quote');
-  assert.match(primary?.text || '', /Tell me what you need fixed/i);
+  assert.match(primary?.text || '', /Get a free quote/i);
   assert.ok(linksIn(hero).some(link => link.attrs.href === '#work'));
   assert.doesNotMatch(hero, /free 3-point|Systems Plan/);
 });
