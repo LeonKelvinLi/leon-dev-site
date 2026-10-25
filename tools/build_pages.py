@@ -2174,6 +2174,7 @@ def booker(lang="en"):
     }catch(e){}
   }
   Cal('init','leon15',{origin:'https://app.cal.com'});
+  Cal.ns.leon15('on',{action:'linkReady',callback:ready});
   Cal.ns.leon15('on',{action:'bookerReady',callback:ready});
   Cal.ns.leon15('on',{action:'linkFailed',callback:failed});
   Cal.ns.leon15('on',{action:'bookingSuccessfulV2',callback:booked});
