@@ -1,8 +1,8 @@
 # Homepage publication
 
-The homepage is a static export of `Noctilucenty/freelance2` at commit `36ac8a3220b128c4c28aefb366d758d93e4030a8`,
-source branch `codex/shorter-homepage-copy` (PR #12 into `codex/initial-site`).
-Editable source: `Noctilucenty/freelance2`, in this workspace at
+The homepage is a static export of `LeonKelvinLi/freelance2` at commit `ac4a104f529f26e09a1211683f28c5778603a8ab`,
+source branch `codex/portfolio-experience` (PR #13 into `codex/initial-site`).
+Editable source: `LeonKelvinLi/freelance2`, in this workspace at
 `/Users/leonkelvinli/Documents/ChatGPT/Personal/work/leon-builds-homepage`.
 
 The Render static site `leonkelvinli` (`srv-d9s1dhon74is73fonuag`) serves
