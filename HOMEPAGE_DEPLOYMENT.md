@@ -1,7 +1,7 @@
 # Homepage publication
 
-The homepage is a static export of `LeonKelvinLi/freelance2` at commit `ac4a104f529f26e09a1211683f28c5778603a8ab`,
-source branch `codex/portfolio-experience` (PR #13 into `codex/initial-site`).
+The homepage is a static export of `LeonKelvinLi/freelance2` at commit `866db160bd771632efaaaebb6b0eb13d2493d30b`,
+source branch `codex/initial-site`. GOSVEA/USJOPU is listed as Software Engineer.
 Editable source: `LeonKelvinLi/freelance2`, in this workspace at
 `/Users/leonkelvinli/Documents/ChatGPT/Personal/work/leon-builds-homepage`.
 
