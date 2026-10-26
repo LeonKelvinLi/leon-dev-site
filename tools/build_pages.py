@@ -1958,7 +1958,7 @@ def about_page():
   <div class="rail">
     <p class="label">More of my work</p>
     <p class="sub">I'm Lead Software Engineer at <span class="keepcase">LOQOL</span>, working on its existing real-estate seller portal, Charlie AI and document integrations. <a class="tlink" href="/work/loqol-seller-portal">Read about my contribution</a>, separate from the older public disclosure demo.</p>
-    <p class="sub">At <span class="keepcase">GOSVEA</span>, I'm Project Technical Lead for <span class="keepcase">USJOPU</span>, a learning and project platform.</p>
+    <p class="sub">At <span class="keepcase">GOSVEA</span>, I'm a Software Engineer working on <span class="keepcase">USJOPU</span>, a learning and project platform.</p>
     <p class="sub">Other work includes <span class="keepcase">Curio</span>'s content automation and an interactive 3D renovation proposal for <span class="keepcase">ONPECY AI Lab</span>.</p>
     <p class="sub">I also built the <span class="keepcase">FLORES Boxing Gloves</span> website and <span class="keepcase">ONPECY</span>'s bilingual site. <a class="tlink" href="/work">Explore the projects</a>.</p>
     <p class="sub">My own app, <a class="tlink" href="https://trycurio.app/" target="_blank" rel="noopener"><span class="keepcase">Curio</span></a>, shows what I can deliver through my <a class="tlink" href="/services/mobile-apps">app development service</a>. You can also read my <a class="tlink" href="https://trycurio.app/team.html#leon" target="_blank" rel="me noopener">founder profile</a>.</p>
