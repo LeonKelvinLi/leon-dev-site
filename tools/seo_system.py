@@ -171,7 +171,12 @@ class TopicPageParser(HTMLParser):
 
 def topic_page(path):
     parser = TopicPageParser()
-    parser.feed(source_for(path).read_text(encoding="utf-8"))
+    # This frozen ledger describes the old multilingual page fleet. The new
+    # subscription publication is checked against its actual composed manifest
+    # by check_subscription_public.py; retired translations are not hreflang
+    # alternatives of the new landing page.
+    source = ROOT / "index.html" if path == "/" else source_for(path)
+    parser.feed(source.read_text(encoding="utf-8"))
     return parser
 
 

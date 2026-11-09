@@ -47,6 +47,8 @@ PUBLIC_OFFERS = {
     'one-page-website-starter': 199,
     'technical-build-partner-plan': 199,
     'technical-build-partner-ongoing': 2000,
+    'annual-personal-developer': 2499,
+    'annual-monthly-equivalent': 208.25,
     'ai-search-pass': 1350,          # the AI search (GEO) pass on /services/seo; anchored in research/2026-09-08-seo-geo-market-prices.md
     'search-ongoing-monthly': 450,   # ongoing search or AI-visibility work, per month
 }
@@ -192,7 +194,10 @@ def main():
 
     # A safe generator is not enough if an old PNG was committed beside it.
     # Byte-for-byte fresh renders make source/asset drift a normal test failure.
-    for command in CREATIVE_ASSET_CHECKS:
+    # Old social/listing campaigns are archived and absent from the current
+    # public manifest (enforced by check_subscription_public.py). Keep their
+    # original byte checks available explicitly for any future reuse.
+    for command in (CREATIVE_ASSET_CHECKS if "--include-legacy-creatives" in sys.argv else ()):
         result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
         if result.returncode:
             detail = (result.stdout + result.stderr).strip().replace('\n', '; ')

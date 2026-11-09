@@ -315,9 +315,9 @@ test('technical build partner is a concrete, attributable offer with honest timi
   ]) assert.match(read(file), /href="\/technical-build-partner"/, `${file} links to the offer`);
 
   const homepage = read('homepage/index.html');
-  assert.equal((homepage.match(/class="service-v2-card\b/g) || []).length, 3, 'published homepage keeps three primary service cards');
-  assert.match(homepage, /href="https:\/\/leonbuilds\.org\/services\/business-automation"/);
-  assert.match(homepage, /href="https:\/\/leonbuilds\.org\/quote"[^>]*data-event="hero_fixed_quote_click"/);
+  assert.equal((homepage.match(/class="build-card /g) || []).length, 6, 'membership exposes six bounded examples');
+  assert.match(homepage, /href="#start"[^>]*data-event="subscription_hero_cta"/);
+  assert.match(homepage, /24 hours over 12 months/);
   assert.match(read('sitemap.xml'), /<loc>https:\/\/leonbuilds\.org\/technical-build-partner<\/loc>/);
 
   const call = read('call.html');
@@ -347,7 +347,7 @@ test('technical build partner is a concrete, attributable offer with honest timi
   assert.match(read('assist.js'), /\['receipt', 'bookingUid', 'status', 'service', 'package'\]/);
   assert.match(read('server/events.js'), /\['receipt', 'bookingUid', 'status', 'service', 'package'\]/);
   assert.match(read('llms.txt'), /Technical Build Partner[\s\S]*Systems Plan: \$199/);
-  assert.match(read('server/prompt.js'), /Systems Plan \$199, credited toward the agreed build/);
+  assert.match(read('server/prompt.js'), /\$2,499\/year billed annually/);
 });
 
 test('metadata, handoff copy, and generated footer stay honest and synchronized', () => {

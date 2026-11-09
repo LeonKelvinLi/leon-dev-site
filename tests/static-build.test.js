@@ -98,8 +98,8 @@ test('static build publishes only pages and required referenced assets', () => {
   ]) {
     assert.deepEqual(
       fs.readFileSync(path.join(output, relative)),
-      fs.readFileSync(path.join(ROOT, relative)),
-      `${relative} retains the legacy page or resource bytes`
+      fs.readFileSync(path.join(ROOT, fs.existsSync(path.join(ROOT, 'content/subscription-public', relative)) ? 'content/subscription-public' : '', relative)),
+      `${relative} publishes the reviewed subscription page or unchanged infrastructure bytes`
     );
   }
   assert.notEqual(

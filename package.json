@@ -2,20 +2,24 @@
   "name": "leon-site",
   "private": true,
   "version": "1.0.0",
-  "description": "leonbuilds.org — static site + assistant API",
+  "description": "leonbuilds.org \u2014 static site + assistant API",
   "type": "commonjs",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node server/index.js",
     "dev": "PORT=8787 node server/index.js",
-    "pages": "python3 tools/build_pages.py",
+    "pages": "python3 tools/build_pages.py && python3 tools/subscription_public.py",
     "build:static": "python3 tools/build_static.py",
     "indexnow:check": "python3 tools/indexnow.py",
     "seo:check": "python3 tools/seo_system.py check && python3 -m unittest tests/test_seo_system.py tests/test_search_console_sync.py",
     "seo:opportunities": "python3 tools/seo_system.py opportunities --output docs/seo/TOP_100_SEO_OPPORTUNITIES.csv",
     "posts": "python3 tools/make_posts.py",
     "social": "python3 tools/make_social.py",
-    "check": "python3 tools/make_posts.py --check && python3 tools/check_prices.py && python3 tools/check_copy.py && python3 tools/check_publication_ledger.py && python3 tools/check_outbound_pack.py && python3 tools/check_ads_pack.py && python3 tools/check_testimonial_release.py && python3 tools/check_site.py && python3 tools/build_static.py --check && python3 tools/seo_system.py check && python3 -m unittest tests/test_seo_system.py tests/test_search_console_sync.py tests/test_acquisition_report.py tests/test_indexnow.py tests/test_live_search.py && node --check assist.js && node --test tests/*.test.js"
+    "check": "python3 tools/make_posts.py --check && python3 tools/check_prices.py && python3 tools/check_copy.py && python3 tools/check_publication_ledger.py && python3 tools/check_outbound_pack.py && python3 tools/check_ads_pack.py && python3 tools/check_testimonial_release.py && python3 tools/check_subscription_public.py && python3 tools/build_static.py --check && python3 tools/seo_system.py check && python3 -m unittest tests/test_seo_system.py tests/test_search_console_sync.py tests/test_acquisition_report.py tests/test_indexnow.py tests/test_live_search.py && node --check assist.js && node --test tests/*.test.js",
+    "check:subscription": "python3 tools/check_subscription_public.py && node --test tests/subscription-public.test.js",
+    "check:legacy-creatives": "python3 tools/check_prices.py --include-legacy-creatives"
   },
   "dependencies": {
     "express": "^4.21.2",

@@ -226,6 +226,7 @@ const HIGH_INTENT_NAMES = new Set([
   'nav_call_click', 'cta_call_click', 'contact_call_click', 'contact_quote_click',
   'about_quote_click', 'work_quote_click', 'work_final_quote_click',
   'reviews_quote_click', 'footer_email_click', 'footer_phone_click',
+  'subscription_nav_cta', 'subscription_hero_cta', 'subscription_pricing_cta',
   'quote_form_start', 'quote_form_submit', 'quote_submit_attempt',
   'contractor_review_click', 'hero_review_cta_click',
   'mobile_review_cta_click', 'work_review_cta_click',

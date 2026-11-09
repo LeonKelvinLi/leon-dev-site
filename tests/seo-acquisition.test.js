@@ -52,28 +52,13 @@ function schemaNodes(html) {
   });
 }
 
-test('published homepage metadata, services, and inquiry path state the current offer', () => {
-  const html = read('index.html');
-  const visible = text(html);
-  assert.match(html, /<title>Small Business Websites &amp; Automation \| Leon Builds<\/title>/i);
-  const description = metadataText(html, /<meta\b[^>]*name="description"[^>]*content="([^"]+)"/i);
-  assert.match(description, /websites, automation, and custom tools/i);
-  assert.match(description, /small business easier to run/i);
-  assert.match(description, /directly with Leon/i);
-  assert.match(html, /<link\b[^>]*rel="canonical"[^>]*href="https:\/\/leonbuilds\.org\/?"/i);
-  assert.equal((html.match(/<h1\b/gi) || []).length, 1);
-  assert.match(visible, /websites, apps & automation/i);
-  assert.match(visible, /small businesses/i);
-  assert.ok(html.indexOf('id="services"') < html.indexOf('id="work"'));
-  assert.match(html, /href="#start"/i);
-  assert.match(html, /href="#work"/i);
-  assert.match(html, /id="start"/i);
-  assert.match(html, /<form\b/i);
-  assert.match(html, /id="quote-email"[^>]*type="email"|type="email"[^>]*id="quote-email"/i);
-  assert.match(html, /id="quote-problem"/i);
-  for (const price of ['$199', '$1,500', '$500']) {
-    assert.match(visible, new RegExp('\\$\\s*' + price.slice(1)), `homepage includes the published ${price} starting floor`);
-  }
+test('published homepage metadata and intake describe the annual membership', () => {
+  const html = read('index.html'); const visible = text(html);
+  assert.match(html, /<title>Your Idea. I’ll Build It. \| LeonBuilds<\/title>/i);
+  assert.match(visible, /24 hours over 12 months/); assert.match(visible, /\$2,499/);
+  assert.match(visible, /before you pay/); assert.equal((html.match(/<h1\b/gi)||[]).length,1);
+  assert.match(html, /href="#start"/); assert.match(html, /id="idea"/); assert.match(html, /id="problem"/);
+  assert.match(html, /rel="canonical"/);
   const nodes = schemaNodes(html);
   assert.equal(nodes.find(node => node['@id'] === 'https://leonbuilds.org/#business')?.['@type'], 'Organization');
   assert.equal(nodes.find(node => node['@id'] === 'https://leonbuilds.org/#leon')?.['@type'], 'Person');
@@ -122,7 +107,7 @@ test('public pages route work and pricing links to the new real destinations', (
     );
     const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] || '';
     if (title) {
-      assert.match(title, /Leon Builds/i, `${file} uses the Leon Builds brand in its title`);
+      assert.match(title, /Leon ?Builds/i, `${file} uses the Leon Builds brand in its title`);
       assert.doesNotMatch(
         title,
         /Leon Builds by Leon Kelvin Li|\|\s*Leon Kelvin Li\s*$/i,
@@ -267,7 +252,7 @@ test('app-development landing page is clear, credible, and quote-first', () => {
 });
 
 test('app service has natural authority links from relevant proof and identity pages', () => {
-  assert.match(read('index.html'), /href="(?:https:\/\/leonbuilds\.org)?\/services\/mobile-apps"/i);
+  assert.match(read('index.html'), /href="https:\/\/leonbuilds\.org\/work\/curio-app"/i);
   assert.match(read('work.html'), /work-curio-public[\s\S]*href="\/services\/mobile-apps"/i);
   assert.match(read('about.html'), /My own app[\s\S]*href="\/services\/mobile-apps"/i);
 });

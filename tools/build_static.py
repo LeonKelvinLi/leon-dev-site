@@ -18,6 +18,7 @@ import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
 
+from subscription_public import generate as generate_subscription_public
 from testimonial_gate import TestimonialGateError, testimonial_release_errors
 from seo_system import assert_publication_paths, validate_topics
 
@@ -247,8 +248,8 @@ def add_resource(
         return
     if relative.suffix.lower() not in ASSET_SUFFIXES:
         raise StaticBuildError(f"unsupported public resource type: {relative.as_posix()}")
-    source = require_source(relative)
     if relative not in manifest:
+        source = require_source(relative)
         manifest[relative] = source
         if relative.suffix.lower() in {".css", ".js"}:
             scan_queue.append(relative)
@@ -376,6 +377,17 @@ def build_manifest() -> dict[PurePosixPath, Path]:
         if len(release_errors) > 8:
             detail += f"; and {len(release_errors) - 8} more"
         raise StaticBuildError("testimonial release gate blocked public output: " + detail)
+    # Historical content has passed its original proof gates. Publish the new
+    # one-offer surfaces, keeping the exact inbound routes and all business data.
+    # Run the release gate again on the actual public documents.
+    manifest.update(generate_subscription_public(pages))
+    discover_resources(manifest, pages)
+    public_documents = {str(relative): source.read_text(encoding="utf-8")
+        for relative, source in manifest.items()
+        if relative.suffix.lower() == ".html" or str(relative) == "llms.txt"}
+    public_errors = testimonial_release_errors(public_documents, ROOT)
+    if public_errors:
+        raise StaticBuildError("subscription public proof gate: " + "; ".join(public_errors))
     return dict(sorted(manifest.items(), key=lambda item: item[0].as_posix()))
 
 

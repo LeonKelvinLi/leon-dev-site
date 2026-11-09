@@ -11,3 +11,6 @@ __pycache__/
 /dist/
 /private/
 /content/client-success/testimonial-drafts.json
+
+# Local dependency link used in isolated worktrees.
+/node_modules
