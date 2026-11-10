@@ -195,7 +195,10 @@ def check_live_foundations(
     _, sitemap_text = fetch_text(f"{origin}/sitemap.xml", timeout=timeout, opener=opener)
     sitemap = parse_sitemap(sitemap_text, origin, "live sitemap.xml")
     try:
-        local_sitemap_text = (root / "sitemap.xml").read_text(encoding="utf-8")
+        # Validate the composed public sitemap, not the archived page inventory.
+        public_sitemap = root / "content/subscription-public/sitemap.xml"
+        sitemap_path = public_sitemap if public_sitemap.is_file() else root / "sitemap.xml"
+        local_sitemap_text = sitemap_path.read_text(encoding="utf-8")
     except OSError as exc:
         raise IndexNowError(f"cannot read local sitemap.xml: {exc}") from exc
     local_sitemap = parse_sitemap(local_sitemap_text, origin, "local sitemap.xml")
@@ -203,7 +206,7 @@ def check_live_foundations(
         raise IndexNowError("live sitemap URLs or lastmod values do not match this checkout")
 
     _, llms = fetch_text(f"{origin}/llms.txt", timeout=timeout, opener=opener)
-    if "Leon Builds" not in llms or origin not in llms:
+    if not re.search(r"\bLeon\s*Builds\b", llms, re.I) or origin not in llms:
         raise IndexNowError("live llms.txt is empty or missing the Leon Builds identity and canonical origin")
 
     _, live_key = fetch_text(f"{origin}/{INDEXNOW_KEY_FILE}", timeout=timeout, opener=opener)

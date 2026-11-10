@@ -1,6 +1,6 @@
 # Subscription publication — November 9, 2026
 
-This branch is a local release candidate. Do not merge/push to a production-watched branch or deploy without Leon’s explicit approval.
+Leon approved production publication with “push live” on November 9, 2026. This approval covers the reviewed website and supporting API release. Paid campaigns, outreach, and billing activation remain outside this release.
 
 The current homepage source is the sibling `leonbuilds-subscription` worktree of freelance2. Build it, then copy only `index.html`, `favicon.svg`, `_next/`, and `images/` from `dist/client` into `homepage/`. Generated assets are replaceable; never touch `data/` or runtime storage. Build into a new/empty output directory if old content-hashed chunks remain; the publisher intentionally refuses to delete unexpected output.
 

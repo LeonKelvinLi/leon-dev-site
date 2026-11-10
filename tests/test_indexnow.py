@@ -101,6 +101,14 @@ class ChangedUrlTests(GitFixture):
             ],
         )
 
+    def test_composed_sitemap_replaces_the_archived_inventory(self) -> None:
+        self.write("sitemap.xml", sitemap([("/old", "2026-08-24")]))
+        before = self.commit("before public composition")
+        self.write("content/subscription-public/sitemap.xml", sitemap([("/new", "2026-11-09")]))
+        after = self.commit("publish new composition")
+        self.assertEqual(indexnow.derive_changed_urls(self.root, before, after, public_paths=set()),
+                         ["https://leonbuilds.org/new", "https://leonbuilds.org/old"])
+
     def test_shared_public_asset_change_submits_current_sitemap(self) -> None:
         routes = [("/", "2026-08-24"), ("/about", "2026-08-24")]
         self.write("sitemap.xml", sitemap(routes))

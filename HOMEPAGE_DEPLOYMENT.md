@@ -1,10 +1,10 @@
-# Pending subscription release candidate — November 9, 2026
+# Approved subscription release — November 9, 2026
 
 Source candidate: `0bd53fbb548270a3f09de5f2401cd20cb5bc6023` in the sibling `leonbuilds-subscription` worktree.
 
-Local branch `codex/leonbuilds-subscription-20261109` replaces the root marketing offer with the $2,499/year membership. The draft includes 24 hours/year released two hours monthly, approved estimates, and manual renewal. Production publication is **not approved**. See `docs/subscription/README.md` for the public composition, local QA, retained data, and the archived creative-image comparison failure. No live revision is changed by this note.
+Local branch `codex/leonbuilds-subscription-20261109` replaces the root marketing offer with the $2,499/year membership. The draft includes 24 hours/year released two hours monthly, approved estimates, and manual renewal. Leon explicitly approved production publication with “push live” on November 9, 2026. Paid campaigns, outreach, and billing activation remain outside this release. See `docs/subscription/README.md` for the public composition, local QA, retained data, and the archived creative-image comparison failure. No live revision is changed by this note.
 
-The deployment instructions below describe the existing service and the prior published source. They remain useful for hosting/rollback, but their source commit is historical until this candidate is explicitly approved and deployed.
+The deployment instructions below describe the existing service and the prior published source. They remain useful for hosting/rollback, but their source commit is historical. The approved source candidate is recorded above; deployment status is tracked in the release report.
 
 # Homepage publication
 

@@ -194,6 +194,16 @@ class LiveSearchTests(unittest.TestCase):
                         root=self.root,
                     )
 
+    def test_composed_public_sitemap_and_current_brand_are_verified(self) -> None:
+        public = self.root / "content/subscription-public/sitemap.xml"
+        public.parent.mkdir(parents=True)
+        public.write_text(SITEMAP, encoding="utf-8")
+        (self.root / "sitemap.xml").write_text(SITEMAP.replace("/about", "/retired"), encoding="utf-8")
+        result = check_live_search.check_live_foundations(
+            opener=self.site_opener({f"{ORIGIN}/llms.txt": FakeResponse(
+                200, f"# LeonBuilds\n{ORIGIN}/", f"{ORIGIN}/llms.txt")}), root=self.root)
+        self.assertEqual(result["pages_checked"], 2)
+
     def test_live_foundations_reject_mismatched_sitemap_and_key(self) -> None:
         shorter = SITEMAP.replace(
             '  <url><loc>https://leonbuilds.org/about</loc><lastmod>2026-08-23</lastmod></url>\n',

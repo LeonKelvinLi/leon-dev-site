@@ -234,14 +234,16 @@ def derive_changed_urls(
 ) -> list[str]:
     """Derive changed, added and removed URLs from committed public state."""
     origin = normalize_origin(origin)
-    after_sitemap_text = git_text(root, after, "sitemap.xml")
+    after_sitemap_text = (git_text(root, after, "content/subscription-public/sitemap.xml")
+                          or git_text(root, after, "sitemap.xml"))
     if after_sitemap_text is None:
         raise IndexNowError(f"sitemap.xml is missing at {after}")
     after_sitemap = parse_sitemap(after_sitemap_text, origin, f"sitemap.xml at {after}")
     if not revision_exists(root, before):
         return sorted(after_sitemap)
 
-    before_sitemap_text = git_text(root, before, "sitemap.xml")
+    before_sitemap_text = (git_text(root, before, "content/subscription-public/sitemap.xml")
+                           or git_text(root, before, "sitemap.xml"))
     before_sitemap = (
         parse_sitemap(before_sitemap_text, origin, f"sitemap.xml at {before}")
         if before_sitemap_text is not None
