@@ -139,6 +139,25 @@ function selectorTarget(match) {
   };
 }
 
+test('published membership CTA markup reaches the existing event bridge on click', async () => {
+  const html = fs.readFileSync(path.join(ROOT, 'homepage/index.html'), 'utf8');
+  const markedLinks = [...html.matchAll(/<a\b[^>]*\bdata-(?:evt|event)="[^"]+"[^>]*>/g)];
+  assert.ok(markedLinks.length >= 7, 'hero, navigation, pricing and project links are marked');
+  for (const [tag] of markedLinks) {
+    const attrs = Object.fromEntries([...tag.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, name, value]) => [name, value]));
+    const name = attrs['data-evt'] || attrs['data-event'];
+    const h = harness({}, undefined, { __leonMeasurementOwnsPageView: true });
+    h.click(selectorTarget(selector => selector === '[data-evt]' && attrs['data-evt']
+      ? { getAttribute: key => attrs[key] || null }
+      : null));
+    assert.equal(h.firstPartyBeacons.length, 1, name + ' produces a beacon');
+    const beacon = h.firstPartyBeacons[0];
+    assert.equal(beacon.url, 'https://leon-assist.onrender.com/api/event');
+    assert.equal(JSON.parse(await beacon.payload.text()).name, name);
+    assert.equal(h.scripts.length, 0, 'CTA tracking does not enable advertising without consent');
+  }
+});
+
 test('homepage can own the single page view while legacy pages keep the automatic event', () => {
   const legacy = harness();
   assert.equal(legacy.firstPartyBeacons.length, 1);

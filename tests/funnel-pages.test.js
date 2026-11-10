@@ -316,7 +316,7 @@ test('technical build partner is a concrete, attributable offer with honest timi
 
   const homepage = read('homepage/index.html');
   assert.equal((homepage.match(/class="build-card /g) || []).length, 6, 'membership exposes six bounded examples');
-  assert.match(homepage, /href="#start"[^>]*data-event="subscription_hero_cta"/);
+  assert.match(homepage, /href="#start"[^>]*data-evt="subscription_hero_cta"/);
   assert.match(homepage, /24 hours over 12 months/);
   assert.match(read('sitemap.xml'), /<loc>https:\/\/leonbuilds\.org\/technical-build-partner<\/loc>/);
 

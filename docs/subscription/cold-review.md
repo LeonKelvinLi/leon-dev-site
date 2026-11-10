@@ -11,3 +11,5 @@ Validation: 13 source tests, 104 Python tests, and 142 Node tests pass (259 tota
 Do not invent time-rounding increments, a guaranteed amount of work for an example, vacation/backup staffing, or an instant start date. Confirm project-specific estimates, start availability, and any such operational details in writing before taking payment. Paid campaigns and billing activation remain outside this release.
 
 Leon supplied and approved a new professional portrait after the cold review. It replaces both homepage portraits, with a square circular frame that preserves the full supplied composition. The new asset uses a fresh filename for browser cache refresh and retains the existing portrait crawler restriction.
+
+Final live analytics review found that declarative CTA labels used `data-event`, while the existing production bridge reads `data-evt`. The source now uses the established attribute for navigation, hero, price, project and calendar links. A regression test clicks the actual published markup through the existing bridge; it failed before the correction and now passes without enabling advertising consent.
