@@ -19,7 +19,7 @@ CSS = '''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;backg
 
 
 def offer_block():
-    return '''<section class="offer" aria-label="Current membership"><h2>Work with Leon</h2><p><strong>$2,499/year</strong> · 2 hours/month · 24 hours/year</p><p>All work, calls, and revisions count. Hosting and paid tools cost extra.</p><p>Work agreed before you pay. No auto-renewal.</p><a class="button" href="/#start">Ask Leon ↗</a><a href="/#scope">Full details</a></section>'''
+    return '''<section class="offer" aria-label="Current membership"><h2>Work with Leon</h2><p><strong>$2,499/year</strong></p><p>Hosting and paid tools cost extra.</p><p>Work agreed before you pay. No auto-renewal.</p><a class="button" href="/#start">Ask Leon ↗</a><a href="/#scope">Full details</a></section>'''
 
 
 
@@ -69,7 +69,7 @@ def bridge_page(relative, original):
     former_title = html.unescape(re.sub('<[^>]+>',' ',title_match.group(1))).strip() if title_match else 'A place to start'
     former_title = re.sub(r'\s+',' ',former_title)
     body = '<main id="main"><h1>Work with Leon.</h1><p>Previous offers are retired. See the current membership below.</p>'+offer_block()+'</main>'
-    return page(former_title+' — current membership', 'LeonBuilds now offers one personal developer membership: $2,499/year with 24 hours across the year, with 2 hours available each month. Ask about your first task before payment.', path, body, noindex=True)
+    return page(former_title+' — current membership', 'LeonBuilds now offers one personal developer membership: $2,499/year. Work agreed before payment.', path, body, noindex=True)
 
 
 def generate(pages, write=False):
@@ -93,8 +93,8 @@ def generate(pages, write=False):
     out[PurePosixPath('sitemap.xml')] = sm
     llms = '''# LeonBuilds
 Website and software work, with Leon. A personal developer membership with Leon Kelvin Li.
-Price: $2,499/year, paid annually; $208.25/month equivalent.
-Allowance: 24 hours/year, released 2 hours monthly, one active request, estimates approved before work. All planning, calls, design, development, testing, revisions, and support count. Hours carry within the year and expire at end/cancellation.
+Price: $2,499/year, paid annually.
+Scope: one approved task at a time. Work and costs agreed before payment.
 No unlimited work. Complex applications and large projects need separate quotes. Hosting, domains, AI usage, and other third-party costs are extra.
 Fit and written terms confirmed before payment. Response target two business days, not an SLA. Manual renewal; cancel by email. Unused future full months refunded at $208.25 each; current/completed months not refundable.
 Paid custom deliverables belong to the customer, subject to pre-existing and third-party licenses.

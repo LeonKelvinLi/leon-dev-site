@@ -1,8 +1,8 @@
 # Approved subscription release — November 9, 2026
 
-Source candidate: `6e4d6ee8f5d2e79cbc36eb6b88dc3fbc0d9df5f3` in the sibling `leonbuilds-subscription` worktree.
+Source candidate: `14c47438a2e028dc911fe89fbf673b33770da8ff` in the sibling `leonbuilds-subscription` worktree.
 
-Local branch `codex/leonbuilds-subscription-20261109` replaces the root marketing offer with the $2,499/year membership. The draft includes 24 hours/year released two hours monthly, approved estimates, and manual renewal. Leon explicitly approved production publication with “push live” on November 9, 2026. Paid campaigns, outreach, and billing activation remain outside this release. See `docs/subscription/README.md` for the public composition, local QA, retained data, and the archived creative-image comparison failure. No live revision is changed by this note.
+Local branch `codex/leonbuilds-subscription-20261109` replaces the root marketing offer with the $2,499/year membership. The current public offer describes agreed work, approved scope, and manual renewal. Leon explicitly requested removal of hour counts and time-accounting copy across the public site. Leon explicitly approved production publication with “push live” on November 9, 2026. Paid campaigns, outreach, and billing activation remain outside this release. See `docs/subscription/README.md` for the public composition, local QA, retained data, and the archived creative-image comparison failure. No live revision is changed by this note.
 
 The initial subscription release (`8fa0042`) was confirmed live before a three-pass cold review. The follow-up makes the monthly release prominent, uses real project screenshots, removes vague slogans, and clarifies the customer workflow without changing commercial terms.
 

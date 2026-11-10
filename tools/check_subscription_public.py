@@ -28,6 +28,7 @@ def main():
         sources[str(relative)] = content
         visible = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', ' ', content, flags=re.S | re.I)
         visible = re.sub(r'<[^>]+>', ' ', visible)
+        if re.search(r'\bhours?\b|allowance', content, re.I): errors.append(f'{relative}: retired time-quota copy in public page')
         for obsolete in [r'\$(?:199|300|400|500|625|750|1,500|2,000|3,500)\b', r'Systems Plan', r'Focused Build Sprint']:
             if re.search(obsolete, visible, re.I): errors.append(f'{relative}: retired public offer: {obsolete}')
         if str(relative).startswith(('services/','industries/','es/','pt/','zh/')) or str(relative) in {'quote.html','call.html','technical-build-partner.html','missed-lead-recovery.html'}:
@@ -41,8 +42,10 @@ def main():
     expected = {url for url, page in canonicals.items() if 'noindex,follow' not in sources[page.label]}
     if actual != expected: errors.append(f'sitemap differs from indexable public pages: {actual ^ expected}')
     root = sources['index.html']
-    for target in ['24 hours over 12 months','before you pay','two business days','renewal is manual']:
+    for target in ['before you pay','two business days','renewal is manual']:
         if target.lower() not in root.lower(): errors.append(f'homepage missing {target}')
+    llms = manifest[Path('llms.txt')].read_text()
+    if re.search(r'\bhours?\b|allowance', llms, re.I): errors.append('retired time-quota copy in llms.txt')
     if 'Disallow: /images/leon-kelvin-li' not in manifest[Path('robots.txt')].read_text(): errors.append('portrait crawler restriction missing')
     for error in errors: print(error, file=sys.stderr)
     for warning in warnings: print('warning: '+warning)
