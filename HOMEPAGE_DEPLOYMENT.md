@@ -1,6 +1,6 @@
 # Approved subscription release — November 9, 2026
 
-Source candidate: `030ab918b38c3255d2735a543af45ddabca6d296` in the sibling `leonbuilds-subscription` worktree.
+Source candidate: `2267ab4625fe4c2518ba62a2faad3ee68ec5310b` in the sibling `leonbuilds-subscription` worktree.
 
 Local branch `codex/leonbuilds-subscription-20261109` replaces the root marketing offer with the $2,499/year membership. The draft includes 24 hours/year released two hours monthly, approved estimates, and manual renewal. Leon explicitly approved production publication with “push live” on November 9, 2026. Paid campaigns, outreach, and billing activation remain outside this release. See `docs/subscription/README.md` for the public composition, local QA, retained data, and the archived creative-image comparison failure. No live revision is changed by this note.
 
