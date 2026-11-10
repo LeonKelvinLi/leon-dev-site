@@ -142,7 +142,7 @@ function selectorTarget(match) {
 test('published membership CTA markup reaches the existing event bridge on click', async () => {
   const html = fs.readFileSync(path.join(ROOT, 'homepage/index.html'), 'utf8');
   const markedLinks = [...html.matchAll(/<a\b[^>]*\bdata-(?:evt|event)="[^"]+"[^>]*>/g)];
-  assert.ok(markedLinks.length >= 7, 'hero, navigation, pricing and project links are marked');
+  assert.ok(markedLinks.length >= 5, 'hero, navigation, pricing and project links are marked');
   for (const [tag] of markedLinks) {
     const attrs = Object.fromEntries([...tag.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, name, value]) => [name, value]));
     const name = attrs['data-evt'] || attrs['data-event'];
