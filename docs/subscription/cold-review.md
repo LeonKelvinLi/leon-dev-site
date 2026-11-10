@@ -9,3 +9,5 @@ Source `9c66fc524e7215d4ade9e47124339fd8527cc063` changes the headline to a conc
 Validation: 13 source tests, 104 Python tests, and 142 Node tests pass (259 total), with typecheck/build and the complete current publisher gate passing. Local Chrome desktop/mobile accessibility audits reported zero detected violations. An independently repeated local API outage preserved form answers; retry after recovery returned a receipt. The final live browser verification and deployment IDs are recorded in the Personal output cold-review report.
 
 Do not invent time-rounding increments, a guaranteed amount of work for an example, vacation/backup staffing, or an instant start date. Confirm project-specific estimates, start availability, and any such operational details in writing before taking payment. Paid campaigns and billing activation remain outside this release.
+
+Leon supplied and approved a new professional portrait after the cold review. It replaces both homepage portraits, with a square circular frame that preserves the full supplied composition. The new asset uses a fresh filename for browser cache refresh and retains the existing portrait crawler restriction.

@@ -16,7 +16,7 @@ test('published export exposes one scoped membership and accurate billing', () =
 test('the published export preserves discoverable intake, scope, developer proof and privacy', () => {
  for (const id of ['how-it-works','what-i-build','pricing','scope','meet-leon','start']) assert.ok(html.includes(`id="${id}"`),id);
  for (const href of ['#start','#scope','https://leonbuilds.org/privacy','https://leonbuilds.org/work/curio-app','https://leonbuilds.org/work/beastypages-website']) assert.ok(html.includes(`href="${href}"`),href);
- assert.match(html,/leon-kelvin-li-portrait\.webp/); assert.match(html,/membership-og\.png/);
+ assert.match(html,/leon-kelvin-li-professional\.webp/); assert.match(html,/membership-og\.png/);
  assert.match(text,/before you pay/); assert.match(html,/<noscript>/);
 });
 test('all referenced export browser chunks, fonts and images exist', () => {
