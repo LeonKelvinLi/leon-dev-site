@@ -7,9 +7,9 @@ const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root,'homepage/index.html'),'utf8');
 const text = html.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
 test('published export exposes one scoped membership and accurate billing', () => {
- assert.match(text,/A developer for websites and tools\./); assert.match(text,/\$2,499/);
- assert.match(text,/\$208\.25\/month, billed annually/); assert.match(text,/24 hours over 12 months/);
- assert.match(text,/one active request/); assert.match(text,/Manual renewal|renewal is manual/i);
+ assert.match(text,/Website fixes and updates\./); assert.match(text,/\$2,499/);
+ assert.match(text,/\$208\.25\/month\. Paid yearly/); assert.match(text,/24 hours over 12 months/);
+ assert.match(text,/one task at a time/); assert.match(text,/Manual renewal|renewal is manual/i);
  assert.equal((html.match(/class="pricing-card"/g)||[]).length,1);
  assert.doesNotMatch(text,/Systems Plan|From \$199|3-point review/);
 });

@@ -19,7 +19,7 @@ CSS = '''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;backg
 
 
 def offer_block():
-    return '''<section class="offer" aria-label="Current membership"><p class="eyebrow">THE CURRENT LEONBUILDS OFFER</p><h2>Your Personal Developer</h2><p><strong>$2,499/year</strong> · Equivalent to $208.25/month, billed annually.</p><p>24 hours over 12 months, released as 2 hours each month. One active request. Estimates approved before work. Planning, calls, design, development, testing, revisions, and support use this allowance.</p><p>Unused hours carry forward within the membership year and expire at its end or cancellation. Hosting, tools, AI usage, and large projects cost extra. I aim to reply within two business days; delivery is scheduled per request.</p><p>Manual renewal, with no automatic charge. Cancel by email; unused future full months are refunded at $208.25 each. Completed and current months are not refundable. Paid custom deliverables are yours; existing tools retain their licenses. Full written terms and fit are confirmed before payment.</p><a class="button" href="/#start">Start Building ↗</a><a href="/#scope">Read the full service details</a></section>'''
+    return '''<section class="offer" aria-label="Current membership"><p class="eyebrow">WEBSITE &amp; SOFTWARE HELP WITH LEON</p><h2>Your Personal Developer</h2><p><strong>$2,499/year</strong> · One payment for 12 months. Works out to $208.25/month.</p><p>Includes 2 hours of my time each month: 24 hours over 12 months. We choose one task at a time. I explain the work and estimate the hours before you approve it. Calls, planning, design, coding, testing, revisions, and support all count toward that time.</p><p>Unused time carries over within the year and expires when your membership ends or you cancel. Hosting, paid tools, AI usage, and larger projects cost extra. I aim to reply within two business days. We agree on timing for each task.</p><p>You choose whether to renew each year; there is no automatic charge. Cancel by email. Unused future full months are refunded at $208.25 each; completed and current months are not refundable. You own the custom work you’ve paid for. Existing tools keep their original licenses. We agree on the first task and the written terms before you pay.</p><a class="button" href="/#start">Ask Leon for help ↗</a><a href="/#scope">Read the full details</a></section>'''
 
 
 def route_for(relative):
@@ -32,7 +32,7 @@ def route_for(relative):
 def page(title, description, path, body, noindex=False, language='en'):
     schema = {'@context':'https://schema.org','@type':'WebPage','name':title,'url':BASE+path,'isPartOf':{'@id':BASE+'/#business'}}
     robots = '<meta name="robots" content="noindex,follow">' if noindex else ''
-    return '<!doctype html><html lang="'+language+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+' | LeonBuilds</title><meta name="description" content="'+html.escape(description, quote=True)+'"><link rel="canonical" href="'+BASE+path+'">'+robots+'<link rel="icon" href="/favicon.svg"><style>'+CSS+'</style><script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')+'</script></head><body><header><a class="brand" href="/">LeonBuilds.</a><a href="/#start">Tell me your idea ↗</a></header>'+body+'<footer><a href="/">Website and software work, with Leon.</a><a href="/#scope">Service details</a><a href="/privacy">Privacy</a><span>© 2026 LeonBuilds</span></footer></body></html>\n'
+    return '<!doctype html><html lang="'+language+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+' | LeonBuilds</title><meta name="description" content="'+html.escape(description, quote=True)+'"><link rel="canonical" href="'+BASE+path+'">'+robots+'<link rel="icon" href="/favicon.svg"><style>'+CSS+'</style><script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')+'</script></head><body><header><a class="brand" href="/">LeonBuilds.</a><a href="/#start">Ask Leon for help ↗</a></header>'+body+'<footer><a href="/">Website and software work, with Leon.</a><a href="/#scope">Service details</a><a href="/privacy">Privacy</a><span>© 2026 LeonBuilds</span></footer></body></html>\n'
 
 
 def retained_page(relative, original):
@@ -56,8 +56,8 @@ def retained_page(relative, original):
     body = re.sub(r'<section\b[^>]*class="[^"]*(?:cta-section|final-cta)[^"]*"[^>]*>.*?</section>', '', body, flags=re.S | re.I)
     body = body.replace('/quote', '/#start').replace('/call', '/#start')
     body = re.sub(r'/#start\?[^\"#\s<>]*', '/#start', body)
-    body = re.sub(r'get a fixed quote|Get a fixed quote|Request a quote|request a quote', 'Discuss your idea', body)
-    body = re.sub(r'book a free 15-minute call|Book a free 15-minute call', 'Start with a scope discussion', body)
+    body = re.sub(r'get a fixed quote|Get a fixed quote|Request a quote|request a quote', 'Ask Leon for help', body)
+    body = re.sub(r'book a free 15-minute call|Book a free 15-minute call', 'Tell me what you need', body)
     body = re.sub(r'(<a\b[^>]*href="/services/[^>]+>).*?(</a>)', r'\1Explore the current membership →\2', body, flags=re.S)
     return page(title, description, route_for(relative), '<main id="main">'+body+offer_block()+'</main><script src="/site-motion.js" defer></script>')
 
@@ -67,8 +67,8 @@ def bridge_page(relative, original):
     title_match = re.search(r'<h1\b[^>]*>(.*?)</h1>', original, re.S | re.I)
     former_title = html.unescape(re.sub('<[^>]+>',' ',title_match.group(1))).strip() if title_match else 'A place to start'
     former_title = re.sub(r'\s+',' ',former_title)
-    body = '<main id="main"><p class="eyebrow">A SIMPLER WAY TO BUILD TOGETHER</p><h1>Website and software work, with Leon.</h1><p>This page now leads to the LeonBuilds personal developer membership. The previous standalone packages and prices have been retired.</p><p>Whether you need a website, a focused automation, or a small custom tool, start by telling me what you want to build. We confirm the first deliverable fits your available hours before you pay.</p>'+offer_block()+'</main>'
-    return page(former_title+' — current membership', 'LeonBuilds now offers one personal developer membership: $2,499/year with 24 scoped hours. Review the details and discuss your idea before payment.', path, body, noindex=True)
+    body = '<main id="main"><p class="eyebrow">A SIMPLER WAY TO BUILD TOGETHER</p><h1>Website and software work, with Leon.</h1><p>This page now leads to the LeonBuilds personal developer membership. The previous standalone packages and prices have been retired.</p><p>Need a website update, a fix, or help with a repeated task? Tell me what you need. I’ll explain the first job and the time it needs before you pay.</p>'+offer_block()+'</main>'
+    return page(former_title+' — current membership', 'LeonBuilds now offers one personal developer membership: $2,499/year with 24 hours across the year, with 2 hours available each month. Ask about your first task before payment.', path, body, noindex=True)
 
 
 def generate(pages, write=False):
