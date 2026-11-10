@@ -22,7 +22,7 @@
     "check:legacy-creatives": "python3 tools/check_prices.py --include-legacy-creatives"
   },
   "dependencies": {
-    "express": "^4.21.2",
+    "express": "^4.22.3",
     "nodemailer": "^9.0.5",
     "openai": "^5.12.2"
   }
