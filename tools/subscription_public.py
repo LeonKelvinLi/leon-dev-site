@@ -32,7 +32,7 @@ def route_for(relative):
 def page(title, description, path, body, noindex=False, language='en'):
     schema = {'@context':'https://schema.org','@type':'WebPage','name':title,'url':BASE+path,'isPartOf':{'@id':BASE+'/#business'}}
     robots = '<meta name="robots" content="noindex,follow">' if noindex else ''
-    return '<!doctype html><html lang="'+language+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+' | LeonBuilds</title><meta name="description" content="'+html.escape(description, quote=True)+'"><link rel="canonical" href="'+BASE+path+'">'+robots+'<link rel="icon" href="/favicon.svg"><style>'+CSS+'</style><script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')+'</script></head><body><header><a class="brand" href="/">LeonBuilds.</a><a href="/#start">Tell me your idea ↗</a></header>'+body+'<footer><a href="/">Your Idea. I’ll Build It.</a><a href="/#scope">Service details</a><a href="/privacy">Privacy</a><span>© 2026 LeonBuilds</span></footer></body></html>\n'
+    return '<!doctype html><html lang="'+language+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+' | LeonBuilds</title><meta name="description" content="'+html.escape(description, quote=True)+'"><link rel="canonical" href="'+BASE+path+'">'+robots+'<link rel="icon" href="/favicon.svg"><style>'+CSS+'</style><script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')+'</script></head><body><header><a class="brand" href="/">LeonBuilds.</a><a href="/#start">Tell me your idea ↗</a></header>'+body+'<footer><a href="/">Website and software work, with Leon.</a><a href="/#scope">Service details</a><a href="/privacy">Privacy</a><span>© 2026 LeonBuilds</span></footer></body></html>\n'
 
 
 def retained_page(relative, original):
@@ -43,6 +43,13 @@ def retained_page(relative, original):
     main = re.search(r'<main\b[^>]*>(.*?)</main>', original, re.S | re.I)
     if not main: raise ValueError(f'{relative}: missing main content')
     body = main.group(1)
+    body = body.replace('Bring the decision or workflow, even if the right build is still unclear.', 'Discuss what you need changed.')
+    body = body.replace('The decision this solved', 'The problem')
+    body = body.replace("The client's exact, approved words.", 'What Glenn said.')
+    body = body.replace('Approved client feedback', 'Client feedback')
+    body = body.replace('Evidence on this page', 'Links and project details')
+    body = body.replace('What supports the case.', 'See the work.')
+    body = body.replace('What this case does not claim', 'Project status')
     # Preserve actual portfolio evidence, privacy disclosures, and educational text.
     # Replace old conversion/footer blocks; do not convert historical case results.
     body = re.sub(r'<script\b[^>]*>.*?</script>', '', body, flags=re.S | re.I)
@@ -60,7 +67,7 @@ def bridge_page(relative, original):
     title_match = re.search(r'<h1\b[^>]*>(.*?)</h1>', original, re.S | re.I)
     former_title = html.unescape(re.sub('<[^>]+>',' ',title_match.group(1))).strip() if title_match else 'A place to start'
     former_title = re.sub(r'\s+',' ',former_title)
-    body = '<main id="main"><p class="eyebrow">A SIMPLER WAY TO BUILD TOGETHER</p><h1>Your Idea. I’ll Build It.</h1><p>This page now leads to the LeonBuilds personal developer membership. The previous standalone packages and prices have been retired.</p><p>Whether you need a website, a focused automation, or a small custom tool, start by telling me what you want to build. We confirm the first deliverable fits your available hours before you pay.</p>'+offer_block()+'</main>'
+    body = '<main id="main"><p class="eyebrow">A SIMPLER WAY TO BUILD TOGETHER</p><h1>Website and software work, with Leon.</h1><p>This page now leads to the LeonBuilds personal developer membership. The previous standalone packages and prices have been retired.</p><p>Whether you need a website, a focused automation, or a small custom tool, start by telling me what you want to build. We confirm the first deliverable fits your available hours before you pay.</p>'+offer_block()+'</main>'
     return page(former_title+' — current membership', 'LeonBuilds now offers one personal developer membership: $2,499/year with 24 scoped hours. Review the details and discuss your idea before payment.', path, body, noindex=True)
 
 
@@ -84,7 +91,7 @@ def generate(pages, write=False):
     save(sm, sitemap, write)
     out[PurePosixPath('sitemap.xml')] = sm
     llms = '''# LeonBuilds
-Your Idea. I’ll Build It. A personal developer membership with Leon Kelvin Li.
+Website and software work, with Leon. A personal developer membership with Leon Kelvin Li.
 Price: $2,499/year, paid annually; $208.25/month equivalent.
 Allowance: 24 hours/year, released 2 hours monthly, one active request, estimates approved before work. All planning, calls, design, development, testing, revisions, and support count. Hours carry within the year and expire at end/cancellation.
 No unlimited work. Complex applications and large projects need separate quotes. Hosting, domains, AI usage, and other third-party costs are extra.

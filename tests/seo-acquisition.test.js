@@ -54,7 +54,7 @@ function schemaNodes(html) {
 
 test('published homepage metadata and intake describe the annual membership', () => {
   const html = read('index.html'); const visible = text(html);
-  assert.match(html, /<title>Your Idea. I’ll Build It. \| LeonBuilds<\/title>/i);
+  assert.match(html, /<title>A Developer for Websites &amp; Tools \| LeonBuilds<\/title>/i);
   assert.match(visible, /24 hours over 12 months/); assert.match(visible, /\$2,499/);
   assert.match(visible, /before you pay/); assert.equal((html.match(/<h1\b/gi)||[]).length,1);
   assert.match(html, /href="#start"/); assert.match(html, /id="idea"/); assert.match(html, /id="problem"/);

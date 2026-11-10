@@ -7,7 +7,7 @@ const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root,'homepage/index.html'),'utf8');
 const text = html.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
 test('published export exposes one scoped membership and accurate billing', () => {
- assert.match(text,/Your Idea\. I’ll Build It\./); assert.match(text,/\$2,499/);
+ assert.match(text,/A developer for websites and tools\./); assert.match(text,/\$2,499/);
  assert.match(text,/\$208\.25\/month, billed annually/); assert.match(text,/24 hours over 12 months/);
  assert.match(text,/one active request/); assert.match(text,/Manual renewal|renewal is manual/i);
  assert.equal((html.match(/class="pricing-card"/g)||[]).length,1);
@@ -16,7 +16,7 @@ test('published export exposes one scoped membership and accurate billing', () =
 test('the published export preserves discoverable intake, scope, developer proof and privacy', () => {
  for (const id of ['how-it-works','what-i-build','pricing','scope','meet-leon','start']) assert.ok(html.includes(`id="${id}"`),id);
  for (const href of ['#start','#scope','https://leonbuilds.org/privacy','https://leonbuilds.org/work/curio-app','https://leonbuilds.org/work/beastypages-website']) assert.ok(html.includes(`href="${href}"`),href);
- assert.match(html,/leon-kelvin-li-portrait\.webp/); assert.match(html,/subscription-og\.png/);
+ assert.match(html,/leon-kelvin-li-portrait\.webp/); assert.match(html,/membership-og\.png/);
  assert.match(text,/before you pay/); assert.match(html,/<noscript>/);
 });
 test('all referenced export browser chunks, fonts and images exist', () => {
